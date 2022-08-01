@@ -1,3 +1,21 @@
+defmodule EmryUiWeb.Components.Button.Default do
+  @moduledoc """
+  Example `default` button.
+  """
+
+  use Surface.Catalogue.Example,
+    subject: EmryUiWeb.Components.Button,
+    title: "Button default"
+
+  alias EmryUiWeb.Components.Button
+
+  def render(assigns) do
+    ~F"""
+    <Button />
+    """
+  end
+end
+
 defmodule EmryUiWeb.Components.Button.Size do
   @moduledoc """
   Examples using the `size` property.
