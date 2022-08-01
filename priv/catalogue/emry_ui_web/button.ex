@@ -1,6 +1,6 @@
 defmodule EmryUiWeb.Components.Button.Size do
   @moduledoc """
-  Example using the `size` property.
+  Examples using the `size` property.
   """
 
   use Surface.Catalogue.Example,
@@ -24,7 +24,7 @@ end
 
 defmodule EmryUiWeb.Components.Button.Hierarchy do
   @moduledoc """
-  Example using the `hierarchy` property.
+  Examples using the `hierarchy` property.
   """
 
   use Surface.Catalogue.Example,
@@ -42,13 +42,14 @@ defmodule EmryUiWeb.Components.Button.Hierarchy do
     <Button hierarchy="tertiary" />
     <Button hierarchy="tertiary-gray" />
     <Button size="none" hierarchy="link-primary" />
+    <Button size="none" hierarchy="link-secondary-gray" />
     """
   end
 end
 
 defmodule EmryUiWeb.Components.Button.Disabled do
   @moduledoc """
-  Example using the `disabled` property.
+  Examples using the `disabled` property.
   """
 
   use Surface.Catalogue.Example,
@@ -65,6 +66,42 @@ defmodule EmryUiWeb.Components.Button.Disabled do
     <Button disabled={true} hierarchy="secondary-gray" />
     <Button disabled={true} hierarchy="tertiary" />
     <Button disabled={true} hierarchy="tertiary-gray" />
+    """
+  end
+end
+
+defmodule EmryUiWeb.Components.Button.Class do
+  @moduledoc """
+  Example using the `class` property.
+  """
+
+  use Surface.Catalogue.Example,
+    subject: EmryUiWeb.Components.Button,
+    title: "Button class"
+
+  alias EmryUiWeb.Components.Button
+
+  def render(assigns) do
+    ~F"""
+    <Button class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" />
+    """
+  end
+end
+
+defmodule EmryUiWeb.Components.Button.Expanded do
+  @moduledoc """
+  Example using the `expanded` property.
+  """
+
+  use Surface.Catalogue.Example,
+    subject: EmryUiWeb.Components.Button,
+    title: "Button expanded"
+
+  alias EmryUiWeb.Components.Button
+
+  def render(assigns) do
+    ~F"""
+    <Button expanded={true} />
     """
   end
 end

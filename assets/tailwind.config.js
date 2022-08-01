@@ -1,7 +1,7 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
-let plugin = require("tailwindcss/plugin");
+const plugin = require("tailwindcss/plugin");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     "./js/**/*.js",
     "../lib/*_web.ex",
     "../lib/*_web/**/*.*ex",
-    "../priv/catalogue/**/*.*ex",
+    "../priv/catalogue/*_web/**/*.*ex",
   ],
   theme: {
     extend: {
@@ -21,6 +21,7 @@ module.exports = {
       },
       colors: {
         primary: {
+          DEFAULT: "#7F56D9",
           25: "#FCFAFF",
           50: "#F9F5FF",
           100: "#F4EBFF",

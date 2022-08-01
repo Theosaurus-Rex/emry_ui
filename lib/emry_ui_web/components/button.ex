@@ -36,7 +36,7 @@ defmodule EmryUiWeb.Components.Button do
   prop expanded, :boolean, default: false
 
   @doc "The button class overrides"
-  prop class, :css_class, default: ""
+  prop class, :string, default: nil
 
   @doc "The button disabled state"
   prop disabled, :boolean, default: false
@@ -54,9 +54,8 @@ defmodule EmryUiWeb.Components.Button do
       :on-click={@click}
       :on-focus={@focus}
       disabled={@disabled}
-      class={"#{handle_button_hierarchy(@hierarchy)} #{handle_button_size(@size)} #{handle_icon_position(@icon_position)}
-        flex items-center justify-center gap-2 rounded-lg text-sm font-medium font-sans transition-colors
-        #{@class}"}
+      class={"#{if @class != nil, do: @class, else: "#{handle_button_hierarchy(@hierarchy)} #{handle_button_size(@size)} #{handle_icon_position(@icon_position)} #{if @expanded, do: "w-full"}
+          inline-flex items-center justify-center gap-2 text-sm font-medium font-sans transition-colors disabled:cursor-not-allowed"}"}
     >
       <#slot name="icon" /> {@label}
     </button>
@@ -66,29 +65,32 @@ defmodule EmryUiWeb.Components.Button do
   defp handle_button_hierarchy(hierarchy) do
     cond do
       hierarchy == "primary" ->
-        "bg-primary-600 hover:bg-primary-700 text-white focus:ring-4 focus:ring-primary-100 disabled:bg-primary-200 disabled:cursor-not-allowed drop-shadow-xs"
+        "bg-primary-600 hover:bg-primary-700 text-white focus:ring-4 focus:ring-primary-100 disabled:bg-primary-200 drop-shadow-xs rounded-lg"
 
       hierarchy == "secondary" ->
-        "bg-primary-50 hover:bg-primary-100 text-primary-700 focus:ring-4 focus:ring-primary-100 disabled:bg-primary-25 disabled:text-primary-300 disabled:cursor-not-allowed drop-shadow-xs"
+        "bg-primary-50 hover:bg-primary-100 text-primary-700 focus:ring-4 focus:ring-primary-100 disabled:bg-primary-25 disabled:text-primary-300 drop-shadow-xs rounded-lg"
 
       hierarchy == "secondary-gray" ->
-        "bg-white ring-1 ring-gray-300 text-gray-700 focus:ring-4 focus:ring-gray-100 hover:bg-gray-300 hover:text-gray-800 disabled:hover:bg-white disabled:text-gray-300 disabled:ring-gray-200 disabled:cursor-not-allowed drop-shadow-xs"
+        "bg-white ring-1 ring-gray-300 text-gray-700 focus:ring-4 focus:ring-gray-100 hover:bg-gray-300 hover:text-gray-800 disabled:hover:bg-white disabled:text-gray-300 disabled:ring-gray-200 drop-shadow-xs rounded-lg"
 
       hierarchy == "tertiary" ->
-        "bg-white text-primary-700 hover:bg-primary-50 disabled:text-gray-300 disabled:hover:bg-white"
+        "bg-white text-primary-700 hover:bg-primary-50 disabled:text-gray-300 disabled:hover:bg-white rounded-lg"
 
       hierarchy == "tertiary-gray" ->
-        "bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-600 disabled:text-gray-300 disabled:hover:bg-white"
+        "bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-600 disabled:text-gray-300 disabled:hover:bg-white rounded-lg"
 
       hierarchy == "link-primary" ->
-        ""
+        "text-primary-700 hover:text-primary-800 disabled:text-gray-300"
+
+      hierarchy == "link-secondary-gray" ->
+        "text-gray-500 hover:text-gray-600 disabled:text-gray-300"
     end
   end
 
   defp handle_button_size(size) do
     cond do
       size == "none" ->
-        "p-0"
+        ""
 
       size == "sm" ->
         "px-3.5 py-2"
